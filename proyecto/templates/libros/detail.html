@@ -1,0 +1,40 @@
+{% extends "shared/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1><span class="glyphicon glyphicon-eye-open"></span> Detalle del Libro </h1>
+    <p></p>
+    <label for="id"><strong>Id : </strong></label>
+    {{ object.id }}
+    <p></p>
+    <label for="isbn"><strong>ISBN : </strong></label>
+    {{ object.isbn }}
+    <p></p>
+    <label for="titulo"><strong>Titulo : </strong></label>
+    {{ object.titulo }}
+    <p></p>
+    <label for="autor"><strong>Autor : </strong></label>
+    {{ object.autor }}
+    <p></p>
+    <label for="publicacion"><strong>Fecha de Publicacion : </strong></label>
+    {{ object.publicacion }}
+    <p></p>
+    <label for="paginas"><strong>Paginas del Libro : </strong></label>
+    {{ object.paginas }}
+    <p></p>
+    <label for="precio"><strong>Precio del Libro : </strong></label>
+    {{ object.precio }}
+    <p></p>
+    <label for="distribuidor"><strong>Distribuidor : </strong></label>
+    {{ object.id_distribuidora }}
+    <p></p>
+    <label for="editorial"><strong>Editorial : </strong></label>
+    {{ object.id_editorial }}
+    <p></p>
+    <label for="activo"><strong>Activo : </strong></label>
+    {{ object.is_active }}
+    <p></p>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:PdfLibro' object.id %}" title="Imprimir PDF"><span class="glyphicon glyphicon glyphicon glyphicon-print"></span></a>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:WordLibro' object.id %}" title="Imprimir Word"><span class="glyphicon glyphicon glyphicon glyphicon-file"></span></a>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:ExcelLibro' object.id %}" title="Imprimir Word"><span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span></a>
+    <a class="btn btn-sm btn-default" href="/Libros" title="Back"><span class="glyphicon glyphicon glyphicon glyphicon-arrow-left"></span></a>
+{% endblock %}

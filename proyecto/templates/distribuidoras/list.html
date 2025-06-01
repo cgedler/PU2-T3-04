@@ -1,0 +1,56 @@
+{% extends "shared/base.html" %}
+{% block title %}Lista de Distribuidoras{% endblock %}
+{% block content %}
+{% if messages %}
+<ul>
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+<strong>{{ message }}</strong>
+</div>
+{% endfor %}
+</ul>
+{% endif %}
+<p></p>
+<a class="btn btn-sm btn-default" href="{% url 'modulo1:DistribuidoraCrear' %}" title="Crear Nuevo" ><span class="glyphicon glyphicon-plus"></span></a>
+<a class="btn btn-sm btn-default" href="{% url 'modulo1:PdfListDistribuidora' %}" title="Imprimir Listado" ><span class="glyphicon glyphicon glyphicon-list-alt"></span></a>
+<p></p>
+{% if object_list %}
+<table id="tabla" class="table table-striped" style="width:100%">
+<thead>
+    <tr>
+        <th> ID </th>
+        <th> NOMBRE </th>
+        <th> DIRECCION </th>
+        <th> TELEFONO </th>
+        <th> CONTACTO </th>
+        <th> WEB </th>
+        <th class="text-center"> ACCIONES </th>
+    </tr>
+</thead>
+<tbody>
+{% for Distribuidora in object_list %}
+    <tr>
+        <td>{{ Distribuidora.id }}</td>
+        <td>{{ Distribuidora.nombre }}</td>
+        <td>{{ Distribuidora.direccion }}</td>
+        <td>{{ Distribuidora.telefono }}</td>
+        <td>{{ Distribuidora.contacto }}</td>
+        <td>{{ Distribuidora.web }}</td>
+        <td>
+            <form method="POST" action="{% url 'modulo1:DistribuidoraEliminar' Distribuidora.id %}">
+            {% csrf_token %}
+            <div class="btn-group">
+                <a class="btn btn-sm btn-success" href="{% url 'modulo1:DistribuidoraDetalle' Distribuidora.id %}" title="Detalle"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a class="btn btn-sm btn-primary" href="{% url 'modulo1:DistribuidoraActualizar' Distribuidora.id %}" title="Actualizar"><span class="glyphicon glyphicon-pencil"></span></a>
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return eliminar()" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+            </form>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+    <h4>No hay registros a mostrar</h4>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'shared/basepdf.html' %}
+{% block page-title %} Módulo : {{ module_title }}{% endblock %}
+{% block content-title %}<h1>Reporte - {{ section_title }}</h1>{% endblock %}
+{% block content %}
+<label for="nombre"><strong>Id : </strong></label>
+    {{ context_pdf.id }}
+    <label for="id"><strong>Id : </strong></label>
+    {{ context_pdf.id }}
+    <p></p>
+    <label for="nombre"><strong>Nombre : </strong></label>
+    {{ context_pdf.nombre }}
+    <p></p>
+    <label for="direccion"><strong>Direccion : </strong></label>
+    {{ context_pdf.direccion }}
+    <p></p>
+    <label for="telefono"><strong>Telefono : </strong></label>
+    {{ context_pdf.telefono }}
+    <p></p>
+    <label for="contacto"><strong>Contacto : </strong></label>
+    {{ context_pdf.contacto }}
+    <p></p>
+    <label for="web"><strong>Web : </strong></label>
+    {{ context_pdf.web }}
+    <p></p>
+    <label for="activo"><strong>Activo : </strong></label>
+    {{ context_pdf.is_active }}
+    <p></p>
+{% endblock %}

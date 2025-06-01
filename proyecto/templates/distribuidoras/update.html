@@ -1,0 +1,19 @@
+{% extends "shared/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1><span class="glyphicon glyphicon-pencil"></span> Modificar Distribuidora</h1>
+<form method="post" enctype="multipart/form-data" action="{% url 'modulo1:DistribuidoraActualizar' object.pk %}" id="myform">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+        {{ field.errors }}
+        <label for="{{ field.id_for_label }}" class="txt_negrita">{{ field.label }}</label><br>
+        {{ field }}
+        {% if field.help_text %}
+        <span class="help-block">{{ field.help_text|safe }}</span>
+        {% endif %}
+        </div>
+        {% endfor %}
+        </form>
+        <button type="submit" class="btn btn-default" title="Guardar" form="myform"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+{% endblock %}

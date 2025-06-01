@@ -1,0 +1,29 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datatables.css' %}">
+    <script src="{% static 'js/jquery-v3.6.0.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/datatables.js' %}"></script>
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+    <script src="{% static 'js/varios.js' %}"></script>
+    <title>{% block title %}Dashboard{% endblock %}</title>
+</head>
+<body>
+    {% include "shared/nav.html" %}
+    <div class="container">
+        {% block content %}
+        <div class="jumbotron">
+            <h1><span class="glyphicon glyphicon-home"></span> Dashboard </h1>
+        </div>
+        {% endblock %}
+    </div>
+    {% include "shared/footer.html" %}
+</body>
+</html>

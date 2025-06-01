@@ -1,0 +1,67 @@
+{% extends "shared/base.html" %}
+{% block title %}Lista de Libros{% endblock %}
+{% block content %}
+<form action="{% url 'modulo1:LibroSearch' %}" method="get">
+<div class="input-group">
+<input name="q" type="text" size="40" placeholder="Filtrar Registros ISBN - Titulo...">
+<button class="btn btn-sm btn-default" title="Buscar - Filtrar" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+</div>
+</form>
+<p></p>
+{% if messages %}
+<ul>
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+<strong>{{ message }}</strong>
+</div>
+{% endfor %}
+</ul>
+{% endif %}
+<p></p>
+<a class="btn btn-sm btn-default" href="{% url 'modulo1:LibroCrear' %}" title="Crear Nuevo" ><span class="glyphicon glyphicon-plus"></span></a>
+<a class="btn btn-sm btn-default" href="{% url 'modulo1:PdfListLibros' %}" title="Imprimir Listado" ><span class="glyphicon glyphicon glyphicon-list-alt"></span></a>
+<p></p>
+{% if object_list %}
+<table id="tabla" class="table table-striped" style="width:100%">
+<thead>
+    <tr>
+        <th> ID </th>
+        <th> ISBN </th>
+        <th> TITULO </th>
+        <th> AUTOR </th>
+        <th> PRECIO </th>
+        <th> DISTRIBUIDORA </th>
+        <th> EDITORIAL </th>
+        <th> ESTADO </th>
+        <th class="text-center"> ACCIONES </th>
+    </tr>
+</thead>
+<tbody>
+{% for Libro in object_list %}
+    <tr>
+        <td>{{ Libro.id }}</td>
+        <td>{{ Libro.isbn }}</td>
+        <td>{{ Libro.titulo }}</td>
+        <td>{{ Libro.autor }}</td>
+        <td>{{ Libro.precio }}</td>
+        <td>{{ Libro.id_distribuidora }}</td>
+        <td>{{ Libro.id_editorial }}</td>
+        <td>{{ Libro.is_active }}</td>
+        <td>
+            <form method="POST" action="{% url 'modulo1:LibroEliminar' Libro.id %}">
+            {% csrf_token %}
+            <div class="btn-group">
+                <a class="btn btn-sm btn-success" href="{% url 'modulo1:LibroDetalle' Libro.id %}" title="Detalle"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a class="btn btn-sm btn-primary" href="{% url 'modulo1:LibroActualizar' Libro.id %}" title="Actualizar"><span class="glyphicon glyphicon-pencil"></span></a>
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return eliminar()" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+            </form>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+    <h4>No hay registros a mostrar</h4>
+{% endif %}
+{% endblock %}

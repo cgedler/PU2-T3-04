@@ -1,0 +1,31 @@
+{% extends "shared/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1><span class="glyphicon glyphicon-eye-open"></span> Detalle del Editorial </h1>
+    <p></p>
+    <label for="id"><strong>Id : </strong></label>
+    {{ object.id }}
+    <p></p>
+    <label for="nombre"><strong>Nombre : </strong></label>
+    {{ object.nombre }}
+    <p></p>
+    <label for="direccion"><strong>Direccion : </strong></label>
+    {{ object.direccion }}
+    <p></p>
+    <label for="telefono"><strong>Telefono : </strong></label>
+    {{ object.telefono }}
+    <p></p>
+    <label for="contacto"><strong>Contacto : </strong></label>
+    {{ object.contacto }}
+    <p></p>
+    <label for="web"><strong>Web : </strong></label>
+    {{ object.web }}
+    <p></p>
+    <label for="activo"><strong>Activo : </strong></label>
+    {{ object.is_active }}
+    <p></p>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:PdfEditorial' object.id %}" title="Imprimir PDF"><span class="glyphicon glyphicon glyphicon glyphicon-print"></span></a>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:WordEditorial' object.id %}" title="Imprimir Word"><span class="glyphicon glyphicon glyphicon glyphicon-file"></span></a>
+    <a class="btn btn-sm btn-default" href="{% url 'modulo1:ExcelEditorial' object.id %}" title="Imprimir Word"><span class="glyphicon glyphicon glyphicon glyphicon-list-alt"></span></a>
+    <a class="btn btn-sm btn-default" href="/Editorials" title="Back"><span class="glyphicon glyphicon glyphicon glyphicon-arrow-left"></span></a>
+{% endblock %}

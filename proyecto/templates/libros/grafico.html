@@ -1,0 +1,75 @@
+{% extends "shared/base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1><span class="glyphicon glyphicon-stats"></span> Graficos </h1>
+<script type="text/javascript">
+    var config1 = {
+        type: 'line',
+        data: {
+            datasets: [{
+                data: {{ data|safe }},
+                //fill: false,
+                backgroundColor: ['#bf1e2e', '#fba729', '#ff6384', '#cc9966', '#ff9f40', '#4bc0c0', '#36a2eb', '#9966ff', '#c9cbcf', '#ffcd56', '#aaff80'],
+                borderWidth: 1,
+                label: 'Cantidad de Libros por precio'
+            }],
+            labels: {{ labels|safe }}
+        },
+        //options: { responsive: true}
+        options:{scales:{xAxes:[{ticks:{beginAtZero:true}}]}}
+    };
+    var config2 = {
+        type: 'bar',
+        data: {
+            datasets: [{
+                data: {{ data|safe }},
+                //fill: false,
+                backgroundColor: ['#bf1e2e', '#fba729', '#ff6384', '#cc9966', '#ff9f40', '#4bc0c0', '#36a2eb', '#9966ff', '#c9cbcf', '#ffcd56', '#aaff80'],
+                borderWidth: 1,
+                label: 'Cantidad de Libros por precio'
+            }],
+            labels: {{ labels|safe }}
+        },
+        //options: { responsive: true}
+        options:{scales:{xAxes:[{ticks:{beginAtZero:true}}]}}
+    };
+    var config3 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: {{ data|safe }},
+                //fill: false,
+                backgroundColor: ['#bf1e2e', '#fba729', '#ff6384', '#cc9966', '#ff9f40', '#4bc0c0', '#36a2eb', '#9966ff', '#c9cbcf', '#ffcd56', '#aaff80'],
+                borderWidth: 1,
+                label: 'Cantidad de Libros por precio'
+            }],
+            labels: {{ labels|safe }}
+        },
+        //options: { responsive: true}
+        options:{scales:{xAxes:[{ticks:{beginAtZero:true}}]}}
+    };
+    window.onload = function() {
+    var ctx1 = document.getElementById('horizontalBar').getContext('2d');
+    window.myPie1 = new Chart(ctx1, config1);
+    var ctx2 = document.getElementById('lineChart2').getContext('2d');
+    window.myPie2 = new Chart(ctx2, config2);
+    var ctx3 = document.getElementById('lineChart3').getContext('2d');
+    window.myPie3 = new Chart(ctx3, config3);
+};
+</script>
+<div class="row">
+    <div class="col-xs-8 col-md-8">
+        <canvas id="horizontalBar"></canvas>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8 col-md-8">
+        <canvas id="lineChart2"></canvas>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8 col-md-8">
+        <canvas id="lineChart3"></canvas>
+    </div>
+</div>
+{% endblock %}

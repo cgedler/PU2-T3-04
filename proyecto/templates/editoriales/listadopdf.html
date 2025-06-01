@@ -1,0 +1,48 @@
+{% extends 'shared/basepdf.html' %}
+{% block extra-style %}
+<style>
+#tablas {
+border-collapse: collapse;
+width: 100%;
+}
+#tablas td, #tablas th {
+border: 1px solid rgb(0, 0, 0);
+padding: 5px;
+}
+#tablas th {
+text-align: center;
+background-color: rgb(119, 117, 131);
+color: white;
+}
+</style>
+{% endblock %} 
+{% block page-title %} Módulo : {{ module_title }}{% endblock %}
+{% block content-title %}<h1>Reporte - {{ section_title }}</h1>{% endblock %}
+{% block content %}
+<table id="tablas" repeat="1">
+<thead>
+<tr>
+    <th> ID </th>
+    <th> NOMBRE </th>
+    <th> DIRECCION </th>
+    <th> TELEFONO </th>
+    <th> CONTACTO </th>
+    <th> WEB </th>
+</tr>
+</thead>
+<tbody>
+{% for Editorial in context_pdf %}
+<tr>
+    <td>{{ Editorial.id }}</td>
+    <td>{{ Editorial.nombre }}</td>
+    <td>{{ Editorial.direccion }}</td>
+    <td>{{ Editorial.telefono }}</td>
+    <td>{{ Editorial.contacto }}</td>
+    <td>{{ Editorial.web }}</td>
+</tr>
+{% endfor %}
+</td>
+</tr>
+</tbody>
+</table>
+{% endblock %}

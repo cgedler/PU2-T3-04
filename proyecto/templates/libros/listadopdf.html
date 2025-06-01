@@ -1,0 +1,54 @@
+{% extends 'shared/basepdf.html' %}
+{% block extra-style %}
+<style>
+#tablas {
+border-collapse: collapse;
+width: 100%;
+}
+#tablas td, #tablas th {
+border: 1px solid rgb(0, 0, 0);
+padding: 5px;
+}
+#tablas th {
+text-align: center;
+background-color: rgb(119, 117, 131);
+color: white;
+}
+</style>
+{% endblock %} 
+{% block page-title %} Módulo : {{ module_title }}{% endblock %}
+{% block content-title %}<h1>Reporte - {{ section_title }}</h1>{% endblock %}
+{% block content %}
+<table id="tablas" repeat="1">
+<thead>
+<tr>
+    <th> ID </th>
+    <th> ISBN </th>
+    <th> TITULO </th>
+    <th> AUTOR </th>
+    <th> PUBLICACION </th>
+    <th> PAGINAS </th>
+    <th> PRECIO </th>
+    <th> DISTRIBUIDORA </th>
+    <th> EDITORIAL </th>
+</tr>
+</thead>
+<tbody>
+{% for Libro in context_pdf %}
+<tr>
+    <td>{{ Libro.id }}</td>
+    <td>{{ Libro.isbn }}</td>
+    <td>{{ Libro.titulo }}</td>
+    <td>{{ Libro.autor }}</td>
+    <td>{{ Libro.publicacion }}</td>
+    <td>{{ Libro.paginas }}</td>
+    <td>{{ Libro.precio }}</td>
+    <td>{{ Libro.id_distribuidora }}</td>
+    <td>{{ Libro.id_editorial }}</td>
+</tr>
+{% endfor %}
+</td>
+</tr>
+</tbody>
+</table>
+{% endblock %}
